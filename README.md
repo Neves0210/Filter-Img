@@ -54,9 +54,3 @@ A interface do aplicativo é dividida em:
 Contribuições são bem-vindas! Se você tiver sugestões ou melhorias, sinta-se à vontade para abrir um issue ou um pull request.
 ## Licença
 Este projeto está licenciado sob a Licença MIT.
-Depois de criar ou atualizar o README, você pode adicioná-lo ao seu repositório GitHub e fazer o commit:
-```bash
-git add README.md
-git commit -m "Adiciona README detalhado"
-git push
-```
