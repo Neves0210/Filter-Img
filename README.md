@@ -50,16 +50,10 @@ A interface do aplicativo é dividida em:
 - **Área de Carregamento**: Permite ao usuário carregar uma imagem do sistema.
 - **Menu de Seleção de Filtros**: Permite ao usuário escolher entre os filtros disponíveis.
 - **Visualização**: Permite ao usuário escolher entre visualizar a imagem editada completa ou usar um controle deslizante para comparar a imagem original e editada.
-## Exemplos
-Visualização da Interface
 ## Contribuições
 Contribuições são bem-vindas! Se você tiver sugestões ou melhorias, sinta-se à vontade para abrir um issue ou um pull request.
 ## Licença
 Este projeto está licenciado sob a Licença MIT.
-## Observações Finais
-- Substitua `https://github.com/seu-usuario/nome-do-repositorio.git` pelo link real do seu repositório.
-- Atualize o caminho da imagem de exemplo, se necessário.
-- Se você tiver mais informações específicas ou funcionalidades adicionais que gostaria de incluir, sinta-se à vontade para adicioná-las ao README.
 Depois de criar ou atualizar o README, você pode adicioná-lo ao seu repositório GitHub e fazer o commit:
 ```bash
 git add README.md
