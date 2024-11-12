@@ -2,9 +2,9 @@ import cv2
 import numpy as np
 
 def apply_sharpen(image):
-    # Definindo o kernel para o filtro de sharpening
-    kernel = np.array([[0, -1, 0],
-                       [-1, 5, -1],
-                       [0, -1, 0]])
+    """Aplica um filtro de nitidez (sharpen) com kernel refinado para realçar detalhes."""
+    # Ajuste do kernel para suavizar o efeito de nitidez e evitar ruídos exagerados
+    kernel = np.array([[-1, -1, -1],
+                       [-1,  9, -1],
+                       [-1, -1, -1]])
     return cv2.filter2D(image, -1, kernel)
-
