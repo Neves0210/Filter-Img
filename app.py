@@ -28,6 +28,18 @@ def apply_filter(filter_option, image):
     }
     return filters[filter_option](image)
 
+# Função para converter imagem para o formato de download com qualidade
+def convert_image_for_download(image, file_format, quality):
+    if file_format == 'jpg':
+        # Qualidade é usada no formato JPEG (1-100)
+        encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), quality]
+    else:
+        # Para PNG, o parâmetro de qualidade é o nível de compressão (0-9)
+        encode_param = [int(cv2.IMWRITE_PNG_COMPRESSION), 9 - int(quality / 10)]
+    
+    _, buffer = cv2.imencode(f".{file_format}", image, encode_param)
+    return buffer.tobytes()
+
 # Interface do Streamlit
 st.title("Editor de Imagens com Filtros")
 uploaded_file = st.file_uploader("Escolha uma imagem...", type=["jpg", "jpeg", "png"])
@@ -60,3 +72,26 @@ if uploaded_file:
             st.image(ensure_bgr(original_image), caption="Imagem Original", channels="BGR")
         with col2:
             st.image(ensure_bgr(edited_image), caption="Imagem Editada", channels="BGR")
+
+    # Seção de download
+    st.subheader("Baixar Imagem Editada")
+    file_format = st.selectbox("Escolha o formato do arquivo:", ("jpg", "png"))
+
+    # Escolher a qualidade da imagem (para JPEG de 1 a 100, para PNG de 0 a 9)
+    if file_format == 'jpg':
+        quality = st.slider("Escolha a qualidade da imagem (JPEG)", 1, 100, 90)
+    else:
+        quality = st.slider("Escolha o nível de compressão (PNG)", 0, 9, 9)
+
+    edited_image_bgr = ensure_bgr(edited_image)  # Garantir que a imagem esteja em BGR
+
+    # Converter a imagem para o formato e qualidade selecionados
+    image_data = convert_image_for_download(edited_image_bgr, file_format, quality)
+
+    # Botão para baixar a imagem
+    st.download_button(
+        label="Baixar Imagem",
+        data=image_data,
+        file_name=f"imagem_editada.{file_format}",
+        mime=f"image/{file_format}"
+    )
